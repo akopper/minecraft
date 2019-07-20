@@ -9,7 +9,8 @@ MAINTAINER Alexander Kopper <github@knospi.com>
 # Simple utility for download a specific version of the minecraft server.jar
 ENV MINECRAFT_UTILITY https://github.com/marblenix/minecraft_downloader/releases/download/20190517-d23712d/minecraft_downloader_linux
 # Version of minecraft to download
-ENV MINECRAFT_VERSION 1.14.3
+ARG MINECRAFT_VERSION=latest
+ENV MINECRAFT_VERSION=${MINECRAFT_VERSION}
 
 # Use APT (Advanced Packaging Tool) built in the Linux distro to download Java, a dependency
 # to run Minecraft.
@@ -22,7 +23,7 @@ RUN apt update; \
     apt install -y ca-certificates-java curl; \
     curl -sL "${MINECRAFT_UTILITY}" -o minecraft_downloader; \
     chmod +x ./minecraft_downloader; \
-    ./minecraft_downloader -o minecraft_server_${MINECRAFT_VERSION}.jar;
+    ./minecraft_downloader -o minecraft_server_$MINECRAFT_VERSION.jar;
 # We do the above in a single line to reduce the number of layers in our container
 
 # Sets working directory for the CMD instruction (also works for RUN, ENTRYPOINT commands)
