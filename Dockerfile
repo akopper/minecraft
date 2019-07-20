@@ -20,10 +20,10 @@ ENV MINECRAFT_VERSION=${MINECRAFT_VERSION}
 # Finally, we download the correct .jar file using wget
 # .jar file fetched from the official page https://minecraft.net/en-us/download/server/
 RUN apt update; \
-    apt install -y ca-certificates-java curl; \
+    apt install -y curl; \
     curl -sL "${MINECRAFT_UTILITY}" -o minecraft_downloader; \
     chmod +x ./minecraft_downloader; \
-    ./minecraft_downloader -o minecraft_server_$MINECRAFT_VERSION.jar;
+    ./minecraft_downloader -o minecraft_server_${MINECRAFT_VERSION}.jar;
 # We do the above in a single line to reduce the number of layers in our container
 
 # Sets working directory for the CMD instruction (also works for RUN, ENTRYPOINT commands)
@@ -35,4 +35,4 @@ VOLUME /data
 EXPOSE 25565
 
 #Automatically accept Minecraft EULA, and start Minecraft server
-CMD echo eula=true > /data/eula.txt && java -jar /minecraft_server_${MINECRAFT_VERSION}.jar
+CMD echo eula=true > /data/eula.txt && java -Xmx1024M -Xms1024M -jar /minecraft_server_${MINECRAFT_VERSION}.jar
