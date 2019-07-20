@@ -2,14 +2,14 @@
 
 # Use the offical Debian Docker image with a specified version tag, Stretch, so not all
 # versions of Debian images are downloaded.
-FROM debian:stretch
+FROM openjdk:8-jre
 
-MAINTAINER Michael Chiang <mchiang@docker.com>
+MAINTAINER Alexander Kopper <github@knospi.com>
 
 # Simple utility for download a specific version of the minecraft server.jar
 ENV MINECRAFT_UTILITY https://github.com/marblenix/minecraft_downloader/releases/download/20190324-f1427be/minecraft_downloader_linux
 # Version of minecraft to download
-ENV MINECRAFT_VERSION latest
+ENV MINECRAFT_VERSION 1.14.3
 
 # Use APT (Advanced Packaging Tool) built in the Linux distro to download Java, a dependency
 # to run Minecraft.
@@ -19,7 +19,7 @@ ENV MINECRAFT_VERSION latest
 # Finally, we download the correct .jar file using wget
 # .jar file fetched from the official page https://minecraft.net/en-us/download/server/
 RUN apt update; \
-    apt install -y default-jre ca-certificates-java curl; \
+    apt install -y ca-certificates-java curl; \
     curl -sL "${MINECRAFT_UTILITY}" -o minecraft_downloader; \
     chmod +x ./minecraft_downloader; \
     ./minecraft_downloader -o minecraft_server_${MINECRAFT_VERSION}.jar;
