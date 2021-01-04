@@ -4,7 +4,7 @@
 # versions of Debian images are downloaded.
 FROM openjdk:8-jre
 
-LABEL author="Alexander Kopper <github@knospi.com>""
+LABEL author="Alexander Kopper <github@knospi.com>"
 
 # Simple utility for download a specific version of the minecraft server.jar
 ENV MINECRAFT_UTILITY https://github.com/marblenix/minecraft_downloader/releases/download/20190517-d23712d/minecraft_downloader_linux
