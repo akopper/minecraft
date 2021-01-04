@@ -4,13 +4,14 @@
 # versions of Debian images are downloaded.
 FROM openjdk:8-jre
 
-MAINTAINER Alexander Kopper <github@knospi.com>
+LABEL author="Alexander Kopper <github@knospi.com>""
 
 # Simple utility for download a specific version of the minecraft server.jar
 ENV MINECRAFT_UTILITY https://github.com/marblenix/minecraft_downloader/releases/download/20190517-d23712d/minecraft_downloader_linux
 # Version of minecraft to download
-ARG MINECRAFT_VERSION=latest
+ARG MINECRAFT_VERSION=1.16.4
 ENV MINECRAFT_VERSION=${MINECRAFT_VERSION}
+ENV MINECRAFT_MAX_MEMORY=2G
 
 # Use APT (Advanced Packaging Tool) built in the Linux distro to download Java, a dependency
 # to run Minecraft.
@@ -31,8 +32,11 @@ RUN apt update; \
 WORKDIR /data
 VOLUME /data
 
+# Automatically accept Minecraft EULA
+RUN echo eula=true > /data/eula.txt
+
 # Expose the container's network port: 25565 during runtime.
 EXPOSE 25565
 
-#Automatically accept Minecraft EULA, and start Minecraft server
-CMD echo eula=true > /data/eula.txt && java -Xmx1024M -Xms1024M -jar /minecraft_server_${MINECRAFT_VERSION}.jar
+# Start Minecraft server
+CMD java -Xmx#{MINECRAFT_MAX_MEMORY} -Xms1024M -jar /minecraft_server_${MINECRAFT_VERSION}.jar
