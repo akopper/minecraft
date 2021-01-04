@@ -39,4 +39,4 @@ RUN echo eula=true > /data/eula.txt
 EXPOSE 25565
 
 # Start Minecraft server
-CMD java -Xmx#{MINECRAFT_MAX_MEMORY} -Xms1024M -jar /minecraft_server_${MINECRAFT_VERSION}.jar
+CMD java -Xmx${MINECRAFT_MAX_MEMORY} -Xms1024M -jar /minecraft_server_${MINECRAFT_VERSION}.jar
