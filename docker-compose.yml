@@ -8,4 +8,4 @@ services:
         volumes:
             - '$(pwd)/data:/data:rw'
         restart: unless-stopped
-        image: 'akopper/minecraft:latest'
+        image: 'akopper/minecraft_server:latest'
