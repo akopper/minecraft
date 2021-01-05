@@ -1,11 +1,13 @@
 version: '3.3'
 services:
     minecraft:
-        ports:
-            - '25565:25565'
-            - '25575:25575' # RCON
-        container_name: mc_server
-        volumes:
-            - '$(pwd)/data:/data:rw'
-        restart: unless-stopped
-        image: 'akopper/minecraft_server:latest'
+      image: 'akopper/minecraft_server:latest'
+      container_name: mc_server
+      ports:
+       - '25565:25565'
+       - '25575:25575' # RCON
+      volumes:
+       - '$(pwd)/data:/data:rw'
+      environment:
+       - MINECRAFT_MAX_MEMORY=2G
+      restart: unless-stopped
