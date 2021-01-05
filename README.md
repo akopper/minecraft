@@ -22,9 +22,9 @@ To view the logs execute `docker logs -f mc_server`
 ## Run via docker compose
 
 * Copy the file `docker-compose.yml` to your target directory 
-* Edit the file and adapt it to your requirements. It's recommended to specify a version of the server image instead of latest.
+* Edit the file and adapt it to your requirements. It's recommended to specify a version of the server image instead of `latest`.
 * Start the services with `docker-compose up -d` (-d will start the container detached)
 
-## Available environmen variables 
+## Available environment variables 
 Default values in parenthesis
 * MINECRAFT_MAX_MEMORY (2G)
