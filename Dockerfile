@@ -9,7 +9,7 @@ LABEL author="Alexander Kopper <github@knospi.com>"
 # Simple utility for download a specific version of the minecraft server.jar
 ENV MINECRAFT_UTILITY https://github.com/marblenix/minecraft_downloader/releases/download/20190517-d23712d/minecraft_downloader_linux
 # Version of minecraft to download
-ARG MINECRAFT_VERSION=1.16.4
+ARG MINECRAFT_VERSION=1.16.5
 ENV MINECRAFT_VERSION=${MINECRAFT_VERSION}
 ENV MINECRAFT_MAX_MEMORY=2G
 
