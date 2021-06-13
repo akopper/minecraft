@@ -1,6 +1,6 @@
 #!/bin/bash
 
-MINECRAFT_VERSION=1.16.5
+MINECRAFT_VERSION=1.17.0
 MINECRAFT_MAX_MEMORY=2G
 
 docker build --no-cache --build-arg MINECRAFT_VERSION=${MINECRAFT_VERSION} -t akopper/minecraft_server:${MINECRAFT_VERSION} .
